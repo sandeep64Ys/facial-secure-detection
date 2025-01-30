@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Salary Report</title>
+</head>
+<body>
+    <h1>Employee Salary Report</h1>
+
+    {% if salary_data %}
+        <table border="1">
+            <tr>
+                <th>Employee Name</th>
+                <th>Total Salary</th>
+                <th>Attendance Details</th>
+            </tr>
+            {% for employee in salary_data %}
+            <tr>
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.salary }}</td>
+                <td>
+                    <table border="1">
+                        <tr>
+                            <th>Attendance Time</th>
+                            <th>Out Time</th>
+                            <th>Worked Hours</th>
+                        </tr>
+                        {% for detail in employee.attendance_details %}
+                        <tr>
+                            <td>{{ detail.attendance_time }}</td>
+                            <td>{{ detail.out_time }}</td>
+                            <td>{{ detail.worked_hours }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No salary data available.</p>
+    {% endif %}
+</body>
+</html>

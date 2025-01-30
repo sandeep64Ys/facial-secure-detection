@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light background color */
+        }
+        .container {
+            margin-top: 50px;
+            background-color: #ffffff; /* White container background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #printButton {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h3 class="text-center">Employee Salary Chart</h3>
+    <div align="center">
+        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+    </div>
+    <div align="center">
+        <!-- <button id="print()" class="btn btn-primary">Print Chart</button> -->
+    </div>
+</div>
+
+<script>
+    // Prepare data for the chart
+    const xValues = ["Monthly Salary", "Total Salary"];
+    const yValues = [{% for employee in salary_data %}{{ employee.monthly_salary }}, {{ employee.salary }}{% if not forloop.last %},{% endif %}{% endfor %}];
+
+    const barColors = ["green", "blue"];
+
+    // Create the chart
+    const myChart = new Chart("myChart", {
+        type: "bar",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: "{{ selected_employee }} Salary Details"
+            },
+            scales: {
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Month {{ selected_month }} and Year {{ selected_year }}'
+                    }
+                }],
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Amount In Rupees'
+                    }
+                }]
+            }
+        }
+    });
+
+    // Print functionality
+    document.getElementById('printButton').addEventListener('click', function() {
+        const printWindow = window.open('', '_blank');
+        printWindow.document.write(`
+            <html>
+                <head>
+                    <title>Print Chart</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; }
+                        .chart-container { text-align: center; }
+                    </style>
+                </head>
+                <body>
+                    <h3>Employee Salary Chart</h3>
+                    <div class="chart-container">
+                        <canvas id="printChart" style="width:100%;max-width:600px"></canvas>
+                    </div>
+                </body>
+            </html>
+        `);
+        printWindow.document.close();
+
+        printWindow.onload = function() {
+            const printChart = new Chart(printWindow.document.getElementById("printChart"), {
+                type: "bar",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: "Employee Salary Details"
+                    },
+                    scales: {
+                        xAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Selected Month and Year {{ selected_month }}/{{ selected_year }}'
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Amount In Rupees'
+                            }
+                        }]
+                    }
+                }
+            });
+
+            // Delay the printing slightly to ensure the chart has time to render
+            setTimeout(() => {
+                printWindow.focus();
+                printWindow.print();
+                printWindow.close();
+            }, 500); // Adjust the delay if necessary
+        };
+    });
+</script>
+</body>
+</html>

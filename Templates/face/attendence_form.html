@@ -1,0 +1,91 @@
+{% include 'face/header.html'%}
+  
+
+  
+{%include 'face/slidebar.html'%}
+
+{% include 'static/val.html'%}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>attendence_details</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Validation</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- jquery validation -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">attendence_details<small>_form</small></h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form  name="formID" ID="formID"   action="/face/attend/" method="POST" id="quickForm">
+                 {%csrf_token %}
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">attend_of</label>
+                    <select name="attend_of" class="form-control">
+                      <option selected>Select>>>> </option>
+                      {%for emp in cview%}
+                      <option value="{{emp.id}}">{{emp.emp_name}}</option>
+                      {% endfor %}
+                    </select>
+                    
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">date</label>
+                   
+                   <textarea name="date" class="form-control"></textarea>
+                </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">time</label>
+                    <input type="text" name="time" class="form-control" id="ccontact_no" placeholder="">
+                  </div>
+            
+                 <div class="form-group">
+                  <label for="exampleInputPassword1">log_type</label>
+                  <input type="text" name="log_type" class="form-control" id="ccontact_no" placeholder="">
+                </div>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="Reset"  class="btn btn-primary">Reset</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+            </div>
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-6">
+
+          </div>
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  {% include 'face/footer.html'%}

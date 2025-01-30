@@ -1,0 +1,94 @@
+{% include 'indira_canteen/cheader.html'%}
+  
+
+  
+{%include 'indira_canteen/cslidebar.html'%}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Food_details</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Validation</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- jquery validation -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Food_details<small>_form</small></h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form action="/canteen/food_form/" method="POST" id="quickForm" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Canteen </label>
+                    <select name="canteen" class="form-control" id="canteen" placeholder="">
+                      {%if request.session.cid %}
+                      {%for cv in cvd%}
+                      <option value="{{cv.id}}">{{cv.canteen_name}}</option>
+                      {%endfor%}
+                      {%endif%}
+                      </select>
+                  </div>
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">food_name</label>
+                    <input type="text" name="food_name" class="form-control" id="food_name" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">food_rate</label>
+                    <input type="text" name="food_rate" class="form-control" id="food_rate" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">food_image</label>
+                    <input type="file" name="food_image" class="form-control" id="food_image" placeholder="">
+                  </div>
+                  
+                  <div class="form-group mb-0">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
+                      
+                    </div>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="Reset"  class="btn btn-primary">Reset</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+            </div>
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-6">
+
+          </div>
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  {% include 'indira_canteen/footer.html'%}

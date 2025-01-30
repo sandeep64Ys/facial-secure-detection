@@ -1,0 +1,82 @@
+{% include 'indira_canteen/header.html'%}
+  
+
+  
+{%include 'indira_canteen/slidebar.html'%}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>User_details</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Validation</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- jquery validation -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">User_details<small>_form</small></h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                  <th>User Id</th>
+                  <th>User Full Name</th>
+                  <th>User Email Id</th>
+                  <th>User Contact NUmber</th>
+                  <th>Action</th>
+                  <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {%for user_v in uview%}
+                <tr>
+                  <td>{{user_v.id}}</td>
+                  <td>{{user_v.user_fullname}}</td>
+                  <td>{{user_v.user_emailid}}</td>
+                  <td>{{user_v.user_contactnumber}}</td>
+                  <td><a href="/canteen/user_update/{{user_v.id}}" class="btn btn-info"><i class="fas fa-eye"></i></a></td>
+                  <td><a href="/canteen/user_del/{{user_v.id}}" class="btn btn-danger"><i class="fas fa-trash"></i></a></td>
+                </tr>
+                {% endfor %}
+                
+                
+                
+                
+                </tbody>
+                
+              </table>          </div>
+            <!-- /.card -->
+            </div>
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-6">
+
+          </div>
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  {% include 'indira_canteen/footer.html'%}

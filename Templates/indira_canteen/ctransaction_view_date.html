@@ -1,0 +1,109 @@
+{% include 'indira_canteen/cheader.html'%}
+  
+
+  
+{%include 'indira_canteen/cslidebar.html'%}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script>
+  $(document).ready(function () {
+$('.fq, .fr').change(function () {
+var parent = $(this).closest('td');
+parent.find('#gtotal').val(parseFloat(parent.find('.fq').val()) * parseFloat(parent.find('.fr').val()))
+});
+});
+ 
+</script>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Transaction_details</h1>
+            
+            
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Validation</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- jquery validation -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title"><a href="/canteen/ctransaction_form/" class="btn btn-dark">ADD+</a></h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <table id="example2" class="table table-bordered table-hover">
+
+                <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Canteen Id</th>
+                  <th>Food Id</th>
+                  <th>Food Quantity</th>
+                  <th>Food Rate</th>
+                  <th>Total</th>
+                  <th>Date</th>
+                  <th>Action</th>
+                  <th>Action</th>
+                  
+                </tr>
+                </thead>
+                <tbody>
+                  
+                    {%for tran_v in tview %}
+                <tr>
+                  <td>{{tran_v.id}}</td>
+                  <td>{{tran_v.canteen_id.canteen_name}}</td>
+                  <td>{{tran_v.food_id.food_name}}</td>
+                  <td class="fq">{{tran_v.food_quantity}}</td>
+                  <td class="fr">{{tran_v.food_rate}}</td>
+                  <td id="gtotal">{{tran_v.total}}</td>
+                  <td>{{tran_v.date}}</td>
+                  <td><a href="/canteen/ctransaction_update/{{tran_v.id}}" class="btn btn-info"><i class="fas fa-eye"></i></a></td>
+                  <td><a href="/canteen/ctransaction_del/{{tran_v.id}}" class="btn btn-danger"><i class="fas fa-trash"></i></a></td>
+                </tr>
+                {% endfor %}
+                
+                
+                
+                
+                </tbody>
+               
+              </table>   
+              <font color="green">Grand Total Collection= {{grand_total}}</font>
+            </div>
+            <!-- /.card -->
+            
+            </div>
+          <!--/.col (left) -->
+          <!-- right column -->
+          
+          <div class="col-md-6">
+            
+
+          </div>
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  {% include 'indira_canteen/footer.html'%}
+  

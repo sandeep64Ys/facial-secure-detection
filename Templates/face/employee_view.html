@@ -1,0 +1,89 @@
+{% include 'face/header.html'%}
+  
+
+  
+{%include 'face/slidebar.html'%}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Employee_details</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/face/emp/" class="btn btn-danger">Add New Employee</a></li>
+              
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- jquery validation -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">employee<small>Details</small></h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                  <th>Sl No</th>
+                  <!-- <th>ID</th> -->
+                  <th>Name</th>
+                  <th>Address</th>
+                  <th>Contact no</th>
+                  <!-- <th>Image</th> -->
+                  <th>Category Id</th>
+                  <th>DOB</th>
+                  <th>Gender</th>
+                  
+                     </tr>
+                </thead>
+                <tbody>
+                    {%for emp in cview%}
+                <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <!-- <td>{{emp.id}}</td> -->
+                  <td>{{emp.emp_name}}</td>
+                  <td>{{emp.emp_address}}</td>
+                  <td>{{emp.emp_contact}}</td>
+                  <!-- <td>{{emp.emp_image}}</td> -->
+                  <td>{{emp.categoryid}}</td>
+                  <td>{{emp.emp_dob}}</td>
+                  <td>{{emp.emp_gender}}</td>
+                   </tr>
+                {% endfor %}
+                
+                
+                
+                
+                </tbody>
+                
+              </table>          </div>
+            <!-- /.card -->
+            </div>
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-6">
+
+          </div>
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  {% include 'face/footer.html'%}

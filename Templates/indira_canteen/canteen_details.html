@@ -1,0 +1,92 @@
+{% include 'indira_canteen/header.html'%}
+  
+
+  
+{%include 'indira_canteen/slidebar.html'%}
+
+{% include 'static/val.html'%}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>canteen_details</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Validation</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- jquery validation -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">canteen_details<small>_form</small></h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form  name="formID" ID="formID"   action="/canteen/canteen_form/" method="POST" id="quickForm">
+                 {%csrf_token %}
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Canteen_name</label>
+                    <input type="text" name="Canteen_name" class="form-control validate[required,canteen[onlyLetters]]" id="Canteen_name" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">canteen_email_id</label>
+                    <input type="emailid" name="cmail_id" class="form-control" id="cmail_id" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">canteen_contact_no</label>
+                    <input type="text" name="ccontact_no" class="form-control" id="ccontact_no" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">canteen_address</label>
+                    <input type="text" name="caddress" class="form-control" id="caddress" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">canteen_location</label>
+                    <input type="text" name="clocation" class="form-control" id="clocation" placeholder="">
+                  </div>
+                  <div class="form-group mb-0">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
+                      
+                    </div>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="Reset"  class="btn btn-primary">Reset</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+            </div>
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-6">
+
+          </div>
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  {% include 'indira_canteen/footer.html'%}

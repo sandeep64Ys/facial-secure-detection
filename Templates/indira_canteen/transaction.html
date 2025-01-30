@@ -1,0 +1,118 @@
+{% include 'indira_canteen/cheader.html'%}
+  
+
+  
+{%include 'indira_canteen/cslidebar.html'%}
+<script>
+  function sum(value)
+  {
+     var tkm,pkm;
+     tkm=10*value;
+     
+     document.getElementById('out2x').value=tkm;
+  }
+  </script>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Transaction_details</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Validation</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- jquery validation -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Transaction<small>_form</small></h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form action="/canteen/ctransaction_form/" method="POST" id="quickForm">
+                {% csrf_token %}
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">canteen_id</label>
+                    <select name="canteen_id" class="form-control">
+                      <option selected>Select </option>
+      
+                      {% for c in cd%}
+                      <option value="{{c.id}}">{{c.canteen_name}}</option>
+                      {%endfor%}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">food_id</label>
+                    <select name="food_id" class="form-control">
+
+                      <option selected>select</option>
+
+                      {% for f in fd %}
+                      <option value="{{f.id}}">{{f.food_name}}</option>
+                      {%endfor%}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">food_quantity</label>
+                    <input type="text" name="food_quantity" class="form-control" onkeyup="sum(this.value);"" id="food_quantity" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Food Rate</label>
+                    <input type="text" value="10" readonly="" name="food_rate" class="form-control"  placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Total</label>
+                    <input type="text"  readonly="" name="total" class="form-control"id="out2x"  placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">transaction_date</label>
+                    <input type="date" name="date" class="form-control" id="date" placeholder="">
+                  </div>
+                  
+                  
+                  <div class="form-group mb-0">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
+                      
+                    </div>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="Reset"  class="btn btn-primary">Reset</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+            </div>
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-6">
+
+          </div>
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  {% include 'indira_canteen/footer.html'%}

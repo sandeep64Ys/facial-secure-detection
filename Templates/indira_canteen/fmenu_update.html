@@ -1,0 +1,94 @@
+{% include 'indira_canteen/cheader.html'%}
+  
+
+  
+{%include 'indira_canteen/cslidebar.html'%}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Food_menu_details</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Validation</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- jquery validation -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">food_menu_details<small>_form</small></h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form action="/canteen/fmenu_edit/{{mview.id}}" method="POST" id="quickForm">
+                {% csrf_token %}
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">canteen_id</label>
+                    <select name="canteen_id" class="form-control">
+                      <option selected>select</option>
+                      {% for c in cd%}
+                      <option value="{{c.id}}">{{c.canteen_name}}</option>
+                      {%endfor%}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">food_id</label>
+                    <select name="food_id" class="form-control">
+                      <option selected>select</option>
+
+                      {% for f in fd %}
+                      <option value="{{f.id}}">{{f.food_name}}</option>
+                      {%endfor%}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">date</label>
+                    <input type="date" name="date" class="form-control" id="date" value="{{mview.date}}">
+                  </div>
+                  
+                  <div class="form-group mb-0">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
+                      
+                    </div>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="Reset"  class="btn btn-primary">Reset</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+            </div>
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-6">
+
+          </div>
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  {% include 'indira_canteen/footer.html'%}

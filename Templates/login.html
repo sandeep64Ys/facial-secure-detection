@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" ></html>
+    <style>
+        .messages {
+    margin: 20px;
+}
+.alert {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: #fff;
+}
+.alert.success {
+    background-color: #4CAF50; /* Green */
+}
+.alert.error {
+    background-color: #f44336; /* Red */
+}
+.alert.info {
+    background-color: #2196F3; /* Blue */
+}
+.alert.warning {
+    background-color: #ff9800; /* Orange */
+}
+
+    </style>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/logincss/style.css">
+</head>
+
+<body>
+    
+  <div class="wrapper">
+    <h2>LOGIN</h2>
+    {% for message in messages %}
+            <div class="alert {{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    <form action="/login/" method="POST">
+        {% csrf_token %}
+      <div class="input-box">
+        <input name="username" id="username" placeholder="Enter your Username" required>
+      </div>
+      <div class="input-box">
+        <input type="password" name="password" id="password" placeholder="Enter your Password" required>
+      </div>
+      
+      <div class="input-box button">
+        <input type="submit" name="submit" value="Login Now">
+      </div>
+      <div class="text">
+        <!-- Add any error messages or additional text here -->
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>
